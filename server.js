@@ -8,6 +8,7 @@ const app = express()
 
 // ROUTES
 const authRoutes = require('./routes/auth')
+const expertRoutes = require('./routes/expert')
 
 // MIDDLEWARE
 app.use(morgan('dev'));
@@ -16,6 +17,7 @@ app.use(cors({credentials: true, origin: process.env.CLIENT_URL}))
 
 // API
 app.use('/api/auth', authRoutes)
+app.use('/api/expert', expertRoutes)
 
 const port = process.env.PORT || 3001
 

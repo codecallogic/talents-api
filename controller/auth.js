@@ -82,7 +82,7 @@ exports.readExpert = (req, res) => {
   Expert.findOne({email: req.user.email}, (err, user) => {
     console.log(err)
     if(err) return res.status(401).json('User does not exists in our records.')
-    console.log(user)
+    // console.log(user)
     return res.json({username: user.username, email: user.email})
   })
 }
