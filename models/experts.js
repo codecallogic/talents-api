@@ -16,6 +16,25 @@ const Experts = new Schema(
   password: {
     type: String,
     required: true
+  },
+  photo: {
+    type: Array
+  },
+  photo_talent: {
+    type: Array
+  },
+  description: {
+    type: String,
+    require: true
+  },
+  activity: {
+    type: Array
+  },
+  specialty: {
+    type: Array
+  },
+  location: {
+    type: Array
   }
 },
 {

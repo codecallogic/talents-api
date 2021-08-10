@@ -83,7 +83,7 @@ exports.readExpert = (req, res) => {
     console.log(err)
     if(err) return res.status(401).json('User does not exists in our records.')
     // console.log(user)
-    return res.json({username: user.username, email: user.email})
+    return res.json({id: user._id, username: user.username, email: user.email, photo: user.photo, photo_talent: user.photo_talent, description: user.description, activity: user.activity, specialty: user.specialty, location: user.location})
   })
 }
 
@@ -121,4 +121,10 @@ exports.expertLogin = (req, res) => {
 
     })
   })
+}
+
+exports.expertLogout = (req, res) => {
+  res.clearCookie('expert')
+  res.clearCookie('expertToken')
+  return res.json('Logged out');
 }
