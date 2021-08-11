@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {signupExpert, activateExpert, expertRequiresLogin, readExpert, expertLogin, expertLogout} = require('../controller/auth')
+const {signupExpert, activateExpert, expertRequiresLogin, readExpert, expertLogin, expertLogout, expertsAll} = require('../controller/auth')
 
 // VALIDATION
 const {userFormValidator} = require('../validators/auth')
@@ -12,5 +12,6 @@ router.post('/activate-expert', activateExpert)
 router.get('/user-expert', expertRequiresLogin, readExpert)
 router.post('/login-expert', expertLogin)
 router.post('/logout-expert', expertLogout)
+router.get('/all-experts', expertsAll)
 
 module.exports  = router

@@ -3,6 +3,7 @@ const aws = require('aws-sdk')
 const jwt = require('jsonwebtoken')
 const expressJWT = require('express-jwt')
 const {signupExpertEmail} = require('../templates/auth')
+const experts = require('../models/experts')
 
 aws.config.update({
   accessKeyId: process.env.ACCESSKEYIAM,
@@ -127,4 +128,20 @@ exports.expertLogout = (req, res) => {
   res.clearCookie('expert')
   res.clearCookie('expertToken')
   return res.json('Logged out');
+}
+
+exports.expertsAll = (req, res) => {
+  Expert.find({}, (err, experts) => {
+    if(err) return res.status(401).json('Cound not get talents')
+    let newArray = []
+    experts.forEach((item) => {
+      let tempDoc = item.toObject()
+      delete tempDoc.password
+      delete tempDoc._id
+      newArray.push(tempDoc)
+    })
+
+    // console.log(newArray)
+    return res.json(newArray)
+  })
 }
