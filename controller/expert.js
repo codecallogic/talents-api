@@ -14,6 +14,9 @@ exports.expertCreate = (req, res) => {
   const form = formidable({multiples: true})
 
   form.parse(req, (err, fields, files) => {
+    console.log(fields)
+    console.log(files)
+    console.log(err)
     if(err) return res.status(401).json('Error reading form data')
 
     if(fields.activity.length > 0) fields.activity = JSON.parse(fields.activity)
@@ -23,9 +26,6 @@ exports.expertCreate = (req, res) => {
     for(const key in fields){
       if(fields[key].length < 1) delete fields[key]
     }
-
-    console.log(fields)
-    console.log(files)
 
     if(fields.delete_photo){
       console.log('PHOTO', fields.delete_photo)
