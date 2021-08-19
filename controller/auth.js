@@ -80,7 +80,7 @@ exports.activateExpert = (req, res) => {
 exports.expertRequiresLogin = expressJWT({ secret: process.env.JWT_ACCOUNT_LOGIN, algorithms: ['HS256']})
 
 exports.readExpert = (req, res) => {
-  console.log(req.user)
+  // console.log(req.user)
   Expert.findOne({email: req.user.email}, (err, user) => {
     console.log(err)
     if(err) return res.status(401).json('User does not exists in our records.')
@@ -95,7 +95,7 @@ exports.expertLogin = (req, res) => {
     console.log(err)
     if(err) return res.status(400).json('You do not have an account please sign up')
     if(!user) return res.status(400).json('You do not have an account please sign up')
-    console.log(user)
+    // console.log(user)
 
     user.comparePassword(req.body.password, (err, isMatch) => {
       console.log(err)
@@ -146,6 +146,15 @@ exports.expertsAll = (req, res) => {
   })
 }
 
+exports.expertMessages = (req, res) => {
+  console.log(req.body)
+  Expert.findById(req.body.id).populate('messages').exec((err, user) => {
+    if(err) res.status(400).json('Could not get messages')
+    // console.log(user)
+    return res.json(user.messages)
+  })
+}
+
 exports.signupClient = (req, res) => {
   Client.findOne({email: req.body.email}, (err, user) => {
     if(user) return res.status(400).json('User with that email already exists')
@@ -169,7 +178,7 @@ exports.signupClient = (req, res) => {
 }
 
 exports.activateClient = (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   jwt.verify(req.body.token, process.env.JWT_ACCOUNT_SIGNUP, function(err, decoded){
     console.log(err)
     if(err) return res.status(401).json('Expired link, please try again.')
@@ -188,10 +197,10 @@ exports.activateClient = (req, res) => {
           return res.status(401).json('Could not save user.')
         }
 
-        console.log(results)
+        // console.log(results)
 
         const tokenClient = jwt.sign({username: results.username, email: results.email}, process.env.JWT_ACCOUNT_LOGIN, {expiresIn: '3hr', algorithm: 'HS256'})
-        const client = {username: results.username, email: results.email}
+        const client = {id: user._id, username: results.username, email: results.email}
         
         return res.json({token: tokenClient, client: client})
       })
@@ -212,7 +221,7 @@ exports.readClient = (req, res) => {
 }
 
 exports.loginClient = (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   Client.findOne({$or: [{username: req.body.username}, {email: req.body.username}]}, (err, user) => {
     console.log(err)
     if(err) return res.status(400).json('You do not have an account please sign up')
@@ -225,7 +234,7 @@ exports.loginClient = (req, res) => {
 
         if(isMatch){
         const tokenClient = jwt.sign({username: user.username, email: user.email}, process.env.JWT_ACCOUNT_LOGIN, {expiresIn: '3hr', algorithm: 'HS256'})
-        const client = {username: user.username, email: user.email}
+        const client = {id: user._id, username: user.username, email: user.email}
         
         return res.status(202).cookie(
           "clientToken", tokenClient, {

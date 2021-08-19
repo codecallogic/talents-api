@@ -17,9 +17,11 @@ const Message = new Schema(
   },
   expertName: {
     type: String, 
-    required: true
   },
   expertPhoto: {
+    type: String,
+  },
+  expertEmail: {
     type: String,
   },
   expertID: {
