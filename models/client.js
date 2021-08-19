@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const SALT_ROUNDS = 6
 const {ObjectId} = mongoose.Schema
 
-const Experts = new Schema(
+const Client = new Schema(
 {
   username: {
     type: String,
@@ -18,25 +18,6 @@ const Experts = new Schema(
     type: String,
     required: true
   },
-  photo: {
-    type: Array
-  },
-  photo_talent: {
-    type: Array
-  },
-  description: {
-    type: String,
-    require: true
-  },
-  activity: {
-    type: Array
-  },
-  specialty: {
-    type: Array
-  },
-  location: {
-    type: Array
-  },
   messages: [{
     type: ObjectId,
     ref: 'Message'
@@ -46,7 +27,7 @@ const Experts = new Schema(
     timestamps: true
 })
 
-Experts.pre('save', function(next){
+Client.pre('save', function(next){
   const user = this;
   if(!user.isModified('password')) return next()
   bcrypt.hash(user.password, SALT_ROUNDS, function(err, hash){
@@ -56,8 +37,8 @@ Experts.pre('save', function(next){
   })
 })
 
-Experts.methods.comparePassword = function(tryPassword, cb){
+Client.methods.comparePassword = function(tryPassword, cb){
   bcrypt.compare(tryPassword, this.password, cb)
 }
 
-module.exports = mongoose.model('Experts', Experts)
+module.exports = mongoose.model('Client', Client)

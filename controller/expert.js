@@ -14,8 +14,8 @@ exports.expertCreate = (req, res) => {
   const form = formidable({multiples: true})
 
   form.parse(req, (err, fields, files) => {
-    console.log(fields)
-    console.log(files)
+    // console.log(fields)
+    // console.log(files)
     console.log(err)
     if(err) return res.status(401).json('Error reading form data')
 

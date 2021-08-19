@@ -9,6 +9,7 @@ const app = express()
 // ROUTES
 const authRoutes = require('./routes/auth')
 const expertRoutes = require('./routes/expert')
+const messageRoutes = require('./routes/message')
 
 // MIDDLEWARE
 app.use(morgan('dev'));
@@ -18,6 +19,7 @@ app.use(cors({credentials: true, origin: process.env.CLIENT_URL}))
 // API
 app.use('/api/auth', authRoutes)
 app.use('/api/expert', expertRoutes)
+app.use('/api/message', messageRoutes)
 
 const port = process.env.PORT || 3001
 
