@@ -200,7 +200,7 @@ exports.activateClient = (req, res) => {
         // console.log(results)
 
         const tokenClient = jwt.sign({username: results.username, email: results.email}, process.env.JWT_ACCOUNT_LOGIN, {expiresIn: '3hr', algorithm: 'HS256'})
-        const client = {id: user._id, username: results.username, email: results.email}
+        const client = {id: results._id, username: results.username, email: results.email}
         
         return res.json({token: tokenClient, client: client})
       })

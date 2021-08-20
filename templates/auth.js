@@ -1,6 +1,6 @@
 exports.signupExpertEmail = (email, token) => {
   return {
-    Source: `contact@fabricioguardia.com`,
+    Source: `Talents <contact@fabricioguardia.com>`,
     Destination: { 
       ToAddresses: [email]
     },
@@ -291,7 +291,7 @@ exports.signupExpertEmail = (email, token) => {
 
 exports.signupClientEmail = (email, token) => {
   return {
-    Source: `contact@fabricioguardia.com`,
+    Source: `Talents <contact@fabricioguardia.com>`,
     Destination: { 
       ToAddresses: [email]
     },
