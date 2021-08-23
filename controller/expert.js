@@ -24,7 +24,7 @@ exports.expertCreate = (req, res) => {
     if(fields.location.length > 0) fields.location = JSON.parse(fields.location)
 
     for(const key in fields){
-      if(fields[key].length < 1) delete fields[key]
+      if(!fields[key]) delete fields[key]
     }
 
     if(fields.delete_photo){
@@ -111,7 +111,7 @@ exports.expertCreate = (req, res) => {
         })
       }
     }else{
-      console.log(fields)
+      // console.log(fields)
       let id = fields.id
       Expert.findByIdAndUpdate(id, fields, {new: true}, (err, updatedUser) => {
         console.log(err)
