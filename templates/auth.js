@@ -510,7 +510,7 @@ exports.signupClientEmail = (email, token) => {
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">
                                       <tbody>
                                         <tr>
-                                          <td class="pc-xs-fs-30 pc-xs-lh-42 pc-fb-font" style="font-family: 'Fira Sans', Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 900; line-height: 46px; letter-spacing: -0.6px; color: #151515; text-align: center;" valign="top">Login to Activate Account!</td>
+                                          <td class="pc-xs-fs-30 pc-xs-lh-42 pc-fb-font" style="font-family: 'Fira Sans', Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 900; line-height: 46px; letter-spacing: -0.6px; color: #151515; text-align: center;" valign="top">Activate Account!</td>
                                         </tr>
                                         <tr>
                                           <td height="10" style="font-size: 1px; line-height: 1px;">&nbsp;</td>
