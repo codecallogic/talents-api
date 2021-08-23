@@ -27,7 +27,7 @@ exports.signupExpert = (req, res) => {
       sendEmailOnRegister
         .then( data => {
             console.log('Email submitted on SES', data)
-            return res.json(`Email sent to ${req.body.email}.`)
+            return res.json(`Email sent at ${req.body.email}, please confirm your account`)
       })
       .catch( err => {
           console.log('SES email on register', err)

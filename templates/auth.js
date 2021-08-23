@@ -240,7 +240,7 @@ exports.signupExpertEmail = (email, token) => {
                                               <tbody>
                                                 <tr>
                                                   <td style="padding: 13px 17px; border-radius: 8px; background-color: #ef1d4b" bgcolor="#ef1d4b" valign="top" align="center">
-                                                    <a href="${process.env.CLIENT_URL}/experts?token=${token}" style="line-height: 1.5; text-decoration: none; word-break: break-word; font-weight: 500; display: block; font-family: 'Fira Sans', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff;">Activate Account</a>
+                                                    <a href="${process.env.CLIENT_URL}/experts?token=${token}" style="line-height: 1.5; text-decoration: none; word-break: break-word; font-weight: 500; display: block; font-family: 'Fira Sans', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff;">Login to Activate Account</a>
                                                   </td>
                                                 </tr>
                                               </tbody>
