@@ -28,6 +28,9 @@ const Message = new Schema(
     type: String,
     required: true
   },
+  sender: {
+    type: String,
+  },
   read: {
     type: Boolean,
     default: false

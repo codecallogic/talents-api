@@ -56,7 +56,7 @@ exports.messageExpert = (req, res) => {
 
 exports.messageExpertOnChat = (req, res) => {
 
-  const message = new Message({message: req.body.message, name: req.body.name, clientID: req.body.clientID, expertName: req.body.expertName, expertPhoto: req.body.expertPhoto, expertID: req.body.expertID, expertEmail: req.body.expertEmail})
+  const message = new Message({message: req.body.message, name: req.body.name, clientID: req.body.clientID, expertName: req.body.expertName, expertPhoto: req.body.expertPhoto, expertID: req.body.expertID, expertEmail: req.body.expertEmail, sender: req.body.sender})
 
   console.log(req.body)
 
@@ -106,7 +106,7 @@ exports.messageExpertOnChat = (req, res) => {
 
 exports.messageClientOnChat = (req, res) => {
   // console.log(req.body)
-  const message = new Message({message: req.body.message, name: req.body.name, clientID: req.body.clientID, expertID: req.body.expertID, expertName: req.body.expertName, expertEmail: req.body.expertEmail})
+  const message = new Message({message: req.body.message, name: req.body.name, clientID: req.body.clientID, expertID: req.body.expertID, expertName: req.body.expertName, expertEmail: req.body.expertEmail, expertPhoto: req.body.expertPhoto, sender: req.body.sender})
 
   message.save((err, success) => {
     console.log(err)
