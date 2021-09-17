@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {signupExpert, activateExpert, expertRequiresLogin, readExpert, expertLogin, expertLogout, expertsAll, expertMessages, signupClient, activateClient, clientRequiresLogin, readClient, loginClient, clientLogout, clientMessages} = require('../controller/auth')
+const {signupExpert, activateExpert, expertRequiresLogin, readExpert, expertLogin, expertLogout, expertsAll, expertMessages, expertMessagesInit, signupClient, activateClient, clientRequiresLogin, readClient, loginClient, clientLogout, clientMessages, clientMessagesInit} = require('../controller/auth')
 
 // VALIDATION
 const {userFormValidator} = require('../validators/auth')
@@ -15,6 +15,7 @@ router.post('/login-expert', expertLogin)
 router.post('/logout-expert', expertLogout)
 router.get('/all-experts', expertsAll)
 router.post('/get-expert-messages', expertMessages)
+router.post('/get-expert-messages-init', expertMessagesInit)
 
 // CLIENT
 router.post('/signup-client', signupClient)
@@ -23,5 +24,6 @@ router.get('/user-client', clientRequiresLogin, readClient)
 router.post('/login-client', loginClient)
 router.post('/logout-client', clientLogout)
 router.post('/get-client-messages', clientMessages)
+router.post('/get-client-messages-init', clientMessagesInit)
 
 module.exports  = router

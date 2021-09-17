@@ -15,6 +15,9 @@ const Message = new Schema(
     type: String,
     required: true
   },
+  clientName: {
+    type: String, 
+  },
   expertName: {
     type: String, 
   },
@@ -31,7 +34,11 @@ const Message = new Schema(
   sender: {
     type: String,
   },
-  read: {
+  readClient: {
+    type: Boolean,
+    default: false
+  },
+  readExpert: {
     type: Boolean,
     default: false
   }

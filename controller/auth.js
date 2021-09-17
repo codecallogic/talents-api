@@ -1,5 +1,6 @@
 const Expert = require('../models/experts')
 const Client = require('../models/client')
+const Message = require('../models/message')
 const aws = require('aws-sdk')
 const jwt = require('jsonwebtoken')
 const expressJWT = require('express-jwt')
@@ -146,12 +147,23 @@ exports.expertsAll = (req, res) => {
   })
 }
 
-exports.expertMessages = (req, res) => {
-  console.log(req.body)
+exports.expertMessagesInit = (req, res) => {
+  // console.log(req.body.id)
   Expert.findById(req.body.id).populate('messages').exec((err, user) => {
     if(err) res.status(400).json('Could not get messages')
-    // console.log(user)
     return res.json(user.messages)
+  })
+}
+
+exports.expertMessages = (req, res) => {
+  // console.log(req.body)
+  Message.updateMany({clientID: req.body.clientID}, {readExpert: true}, (err, updatedMessages) => {
+    console.log(err)
+    if(err) res.status(400).json('Could not save read messages')
+    Expert.findById(req.body.expertID).populate('messages').exec((err, user) => {
+      if(err) res.status(400).json('Could not get messages')
+      return res.json(user.messages)
+    })
   })
 }
 
@@ -226,7 +238,7 @@ exports.loginClient = (req, res) => {
     console.log(err)
     if(err) return res.status(400).json('You do not have an account please sign up')
     if(!user) return res.status(400).json('You do not have an account please sign up')
-    console.log(user)
+    // console.log(user)
 
     user.comparePassword(req.body.password, (err, isMatch) => {
       console.log(err)
@@ -261,11 +273,22 @@ exports.clientLogout = (req, res) => {
   return res.json('Logged out');
 }
 
-exports.clientMessages = (req, res) => {
-  console.log(req.body)
+exports.clientMessagesInit = (req, res) => {
+  // console.log(req.body)
   Client.findById(req.body.id).populate('messages').exec((err, user) => {
     if(err) res.status(400).json('Could not get messages')
-
     return res.json(user.messages)
+  })
+}
+
+exports.clientMessages = (req, res) => {
+  console.log(req.body)
+  Message.updateMany({expertID: req.body.expertID}, {readClient: true}, (err, updatedMessages) => {
+    console.log(err)
+    if(err) res.status(400).json('Could not save read messages')
+    Client.findById(req.body.clientID).populate('messages').exec((err, user) => {
+      if(err) res.status(400).json('Could not get messages')
+      return res.json(user.messages)
+    })
   })
 }

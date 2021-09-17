@@ -20,17 +20,17 @@ exports.messageExpert = (req, res) => {
     console.log(err)
     if(err) res.status(400).json('Error reading message')
 
-    const params = messageExpertEmail(req.body.name, req.body.message, req.body.expertEmail)
+    // const params = messageExpertEmail(req.body.name, req.body.message, req.body.expertEmail)
 
-    const sendEmailOnRegister = ses.sendEmail(params).promise()
+    // const sendEmailOnRegister = ses.sendEmail(params).promise()
 
-    sendEmailOnRegister
-      .then( data => {
-          console.log('Email submitted on SES', data)
-    })
-    .catch( err => {
-        console.log('SES email on register', err)
-    })
+    // sendEmailOnRegister
+    //   .then( data => {
+    //       console.log('Email submitted on SES', data)
+    // })
+    // .catch( err => {
+    //     console.log('SES email on register', err)
+    // })
 
     Client.findById(req.body.clientID, (err, client) => {
       if(err) res.status(400).json('Client could not be found')
@@ -64,17 +64,17 @@ exports.messageExpertOnChat = (req, res) => {
     console.log(err)
     if(err) res.status(400).json('Error reading message')
 
-    const params = messageExpertEmail(req.body.name, req.body.message, req.body.expertEmail)
+    // const params = messageExpertEmail(req.body.name, req.body.message, req.body.expertEmail)
 
-    const sendEmailOnRegister = ses.sendEmail(params).promise()
+    // const sendEmailOnRegister = ses.sendEmail(params).promise()
 
-    sendEmailOnRegister
-      .then( data => {
-          console.log('Email submitted on SES', data)
-    })
-    .catch( err => {
-        console.log('SES email on register', err)
-    })
+    // sendEmailOnRegister
+    //   .then( data => {
+    //       console.log('Email submitted on SES', data)
+    // })
+    // .catch( err => {
+    //     console.log('SES email on register', err)
+    // })
     
     
     Client.findById(req.body.clientID, (err, client) => {
