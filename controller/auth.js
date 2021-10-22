@@ -228,7 +228,7 @@ exports.readClient = (req, res) => {
     console.log(err)
     if(err) return res.status(401).json('User does not exists in our records.')
     // console.log(user)
-    return res.json({id: user._id, username: user.username, email: user.email})
+    return res.json({id: user._id, username: user.username, email: user.email, photo: user.photo ? user.photo : null})
   })
 }
 

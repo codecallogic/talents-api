@@ -25,6 +25,7 @@ const app = express()
 const authRoutes = require('./routes/auth')
 const expertRoutes = require('./routes/expert')
 const messageRoutes = require('./routes/message')
+const clientRoutes = require('./routes/client')
 
 // MIDDLEWARE
 app.use(morgan('dev'));
@@ -35,6 +36,7 @@ app.use(cors({credentials: true, origin: process.env.CLIENT_URL}))
 app.use('/api/auth', authRoutes)
 app.use('/api/expert', expertRoutes)
 app.use('/api/message', messageRoutes)
+app.use('/api/client', clientRoutes)
 
 const port = process.env.PORT || 3001
 const server = app.listen(port, () => console.log(`Server is running on port ${port}`))

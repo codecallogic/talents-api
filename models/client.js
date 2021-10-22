@@ -18,6 +18,9 @@ const Client = new Schema(
     type: String,
     required: true
   },
+  photo: {
+    type: Array
+  },
   messages: [{
     type: ObjectId,
     ref: 'Message'
