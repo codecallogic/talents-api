@@ -18,6 +18,9 @@ const Message = new Schema(
   clientName: {
     type: String, 
   },
+  clientPhoto: {
+    type: String,
+  },
   expertName: {
     type: String, 
   },

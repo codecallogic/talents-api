@@ -44,11 +44,11 @@ const server = app.listen(port, () => console.log(`Server is running on port ${p
 const io = require('socket.io')(server, {cookie: false})
 
 io.on('connection', (socket) => {
-  socket.on('client-message-expert', ({name, message, clientName,expertName, expertPhoto, expertID, expertEmail, clientID, sender, readClient}, callback) => {
+  socket.on('client-message-expert', ({name, message, clientName, clientPhoto, expertName, expertPhoto, expertID, expertEmail, clientID, sender, readClient}, callback) => {
 
     // console.log(name, message, expertName, expertPhoto, expertID, expertEmail, clientID, sender)
 
-    const newMessage = new Message({message: message, name: name, clientID: clientID, clientName: clientName, expertName: expertName, expertPhoto: expertPhoto, expertID: expertID, expertEmail: expertEmail, sender: sender, readClient: readClient})
+    const newMessage = new Message({message: message, name: name, clientID: clientID, clientName: clientName, clientPhoto: clientPhoto, expertName: expertName, expertPhoto: expertPhoto, expertID: expertID, expertEmail: expertEmail, sender: sender, readClient: readClient})
 
     newMessage.save((err, success) => {
       console.log(err)
