@@ -38,7 +38,7 @@ app.use('/api/expert', expertRoutes)
 app.use('/api/message', messageRoutes)
 app.use('/api/client', clientRoutes)
 
-const port = process.env.PORT || 3001
+const port = process.env.PORT
 const server = app.listen(port, () => console.log(`Server is running on port ${port}`))
 
 const io = require('socket.io')(server, {cookie: false})
